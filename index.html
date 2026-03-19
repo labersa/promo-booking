@@ -3,199 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pengumuman - Labersa Riau Fantasi</title>
+<title>Promo Riau Fantasi Labersa</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
-    font-family:'Poppins', sans-serif;
-    background: linear-gradient(135deg,#2b0b5e,#5f1fbf);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:20px;
-    color:#333;
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#f5f7fb;
 }
-
-/* Lampu Ramadhan */
-.lanterns{
-    position:absolute;
-    top:0;
-    width:100%;
-    display:flex;
-    justify-content:space-evenly;
-    pointer-events:none;
+.hero{
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+  color:#fff;
+  padding:40px 20px;
+  text-align:center;
 }
-
-.lantern{
-    width:45px;
-    height:75px;
-    background:radial-gradient(circle,#ffd54f 40%,#ff9800 100%);
-    border-radius:25px;
-    position:relative;
-    animation:glow 2s infinite alternate ease-in-out;
-}
-
-.lantern::before{
-    content:"";
-    position:absolute;
-    top:-45px;
-    left:50%;
-    width:2px;
-    height:45px;
-    background:#fff;
-    transform:translateX(-50%);
-}
-
-@keyframes glow{
-    from{box-shadow:0 0 8px #ffd54f;}
-    to{box-shadow:0 0 25px #ffc107;}
-}
-
-/* Card */
-.card{
-    background:#fff;
-    max-width:700px;
-    width:100%;
-    border-radius:20px;
-    padding:60px 40px;
-    text-align:center;
-    box-shadow:0 20px 50px rgba(0,0,0,0.25);
-    position:relative;
-    z-index:1;
-}
-
+.hero h1{margin:0;font-size:28px;font-weight:700;}
+.hero p{margin-top:10px;font-size:14px;opacity:.9}
 .badge{
-    display:inline-block;
-    background:#f5c542;
-    padding:8px 18px;
-    border-radius:30px;
-    font-weight:600;
-    margin-bottom:15px;
-    font-size:14px;
+  display:inline-block;
+  background:#ffeb3b;
+  color:#000;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
+  margin-top:10px;
 }
-
-h1{
-    font-size:30px;
-    color:#2b0b5e;
-    font-weight:700;
-    margin-bottom:5px;
+.container{
+  max-width:520px;
+  margin:-30px auto 30px;
+  background:#fff;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,.1);
 }
-
-h2{
-    font-size:22px;
-    color:#d84315;
-    margin-bottom:20px;
+.price-box{
+  text-align:center;
+  background:#f1f8ff;
+  padding:20px;
+  border-radius:16px;
 }
-
-.date{
-    background:#2b0b5e;
-    color:#fff;
-    padding:12px 18px;
-    border-radius:10px;
-    font-weight:500;
-    margin-bottom:20px;
-    display:inline-block;
+.price-box h2{
+  margin:0;
+  font-size:32px;
+  color:#0072ff;
 }
-
-.message{
-    font-size:16px;
-    font-weight:500;
-    margin-bottom:25px;
+.info{
+  margin-top:15px;
+  font-size:14px;
 }
-
-/* WhatsApp Buttons */
-.wa-title{
-    font-weight:600;
-    margin-bottom:12px;
+.list{
+  margin-top:20px;
+  background:#fff8e1;
+  padding:15px;
+  border-radius:12px;
+  font-size:14px;
 }
-
-.wa-buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-    margin-bottom:25px;
+label{
+  display:block;
+  margin-top:15px;
+  font-weight:600;
 }
-
-.wa-btn{
-    background:#25D366;
-    color:#fff;
-    text-decoration:none;
-    padding:10px 18px;
-    border-radius:8px;
-    font-weight:600;
-    transition:0.3s;
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:10px;
+  border:1px solid #ddd;
 }
-
-.wa-btn:hover{
-    background:#1ebe5d;
+button{
+  width:100%;
+  margin-top:20px;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
 }
-
+button:hover{opacity:.9}
 .footer{
-    background:#f5c542;
-    padding:12px;
-    border-radius:8px;
-    font-weight:600;
-}
-
-@media(max-width:600px){
-    .card{padding:50px 25px;}
-    h1{font-size:24px;}
-    h2{font-size:18px;}
-    .lantern{width:35px;height:60px;}
+  text-align:center;
+  font-size:13px;
+  color:#777;
+  margin-top:15px;
 }
 </style>
 </head>
+
 <body>
 
-<div class="lanterns">
-    <div class="lantern"></div>
-    <div class="lantern"></div>
-    <div class="lantern"></div>
-    <div class="lantern"></div>
+<div class="hero">
+  <h1>🎟️ PROMO GOBER</h1>
+  <p>Go Booking Online Lebaran Riau Fantasi</p>
+  <div class="badge">WAJIB BOOKING</div>
 </div>
 
-<div class="card">
+<div class="container">
 
-    <div class="badge">Menyambut Bulan Suci Ramadhan</div>
-
-    <h1>LABERSA RIAU FANTASI</h1>
-    <h2>TUTUP SEMENTARA</h2>
-
-    <div class="date">
-        Mulai 19 Februari s/d H-5 sebelum Lebaran
+  <div class="price-box">
+    <h2>Rp40.000</h2>
+    <div class="info">
+      Senin - Minggu<br>
+      ⏰ 09.00 - 17.00<br>
+      📅 21 - 29 Maret 2026
     </div>
+  </div>
 
-    <div class="message">
-        Selama bulan puasa kami melaksanakan maintenance.
-    </div>
+  <div class="list">
+    ✅ Pembayaran tunai saat kunjungan<br>
+	✅ Anak dibawah 80 cm GRATIS<br>
+    ✅ Termasuk wahana baru<br>
+    ✅ Wajib booking H-1<br>
+    ⚠️ Menunjukkan bukti booking
+  </div>
 
-    <div class="wa-title">Informasi Lebih Lanjut:</div>
+  <form onsubmit="sendToWA(); return false;">
+    <label>Nama</label>
+    <input type="text" id="nama" required>
 
-    <div class="wa-buttons">
-        <a class="wa-btn" href="https://wa.me/628117696599" target="_blank">
-            Hendra 
-        </a>
-        <a class="wa-btn" href="https://wa.me/628117673499" target="_blank">
-            Dedi 
-        </a>
-    </div>
+    <label>No WhatsApp</label>
+    <input type="tel" id="nomor" required>
 
-    <div class="footer">
-        Selamat Menunaikan Ibadah Puasa 1447 H
-    </div>
+    <label>Tanggal</label>
+    <input type="date" id="tanggal" required>
+
+    <label>Jumlah Tiket</label>
+    <input type="number" id="jumlah" value="1" min="1" required>
+
+    <label>Catatan</label>
+    <textarea id="catatan"></textarea>
+
+    <button type="submit">📲 Booking Sekarang</button>
+  </form>
+
+  <div class="footer">
+    © 2026 Riau Fantasi Labersa
+  </div>
 
 </div>
+
+<script>
+function sendToWA(){
+  const nama = document.getElementById("nama").value;
+  const nomor = document.getElementById("nomor").value;
+  const tanggal = document.getElementById("tanggal").value;
+  const jumlah = document.getElementById("jumlah").value;
+  const catatan = document.getElementById("catatan").value || "-";
+
+  const t = tanggal.split("-");
+  const tgl = t[2] + "-" + t[1] + "-" + t[0];
+
+  const pesan =
+    "Halo Riau Fantasi Labersa!%0A%0A" +
+    "Booking PROMO GOBER Rp40.000%0A%0A" +
+    "Nama: " + nama + "%0A" +
+    "No HP: " + nomor + "%0A" +
+    "Tanggal: " + tgl + "%0A" +
+    "Jumlah: " + jumlah + "%0A" +
+    "Catatan: " + catatan + "%0A%0A" +
+    "Info Penting:%0A" +
+    "- Berlaku 21-29 Maret 2026%0A" +
+    "- Anak dibawah 80cm Gratis%0A" +
+    "- Wajib menunjukkan bukti booking";
+
+  window.open("https://wa.me/628117696599?text=" + pesan);
+}
+</script>
 
 </body>
 </html>
-
