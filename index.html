@@ -157,6 +157,19 @@ function sendToWA(){
 
   const t = tanggal.split("-");
   const tgl = t[2] + "-" + t[1] + "-" + t[0];
+	
+// 🔥 KIRIM KE GOOGLE SHEET
+  fetch("https://script.google.com/macros/s/AKfycbwvL5m1hFKh8ucmOYydvFyoUZaFqb4LUyzhNDhvA6V9zzcBr_28FmXQHDNsVZL4y9w6/exec", {
+    method: "POST",
+	mode: "no-cors",
+    body: JSON.stringify({
+      nama: nama,
+      nomor: nomor,
+      tanggal: tgl,
+      jumlah: jumlah,
+      catatan: catatan
+    })
+  });
 
   const pesan =
     "Halo Riau Fantasi Labersa!%0A%0A" +
