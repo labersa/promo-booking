@@ -159,16 +159,17 @@ function sendToWA(){
   const tgl = t[2] + "-" + t[1] + "-" + t[0];
 	
 // 🔥 KIRIM KE GOOGLE SHEET
-  fetch("https://script.google.com/macros/s/AKfycbyonV9r4resgJpHxYFXWDBnzSI-MvHMan87PpF2mp9FOsJkhN6scgGOKpEdvfjlS42e/exec", {
-    method: "POST",
-    body: JSON.stringify({
-      nama: nama,
-      nomor: nomor,
-      tanggal: tgl,
-      jumlah: jumlah,
-      catatan: catatan
-    })
-  });
+ const formData = new FormData();
+formData.append("nama", nama);
+formData.append("nomor", nomor);
+formData.append("tanggal", tgl);
+formData.append("jumlah", jumlah);
+formData.append("catatan", catatan);
+
+fetch("https://script.google.com/macros/s/AKfycbyiOsrYvPc2vSL6cOHM-J6O9hIJGjuEm5HZmyKOAYiyeDrUQI_RYiNxArbdS7-AdM4V/exec", {
+  method: "POST",
+  body: formData
+});
 
   const pesan =
     "Halo Riau Fantasi Labersa!%0A%0A" +
