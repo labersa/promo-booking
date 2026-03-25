@@ -169,6 +169,12 @@ formData.append("catatan", catatan);
 fetch("https://script.google.com/macros/s/AKfycbzhxVEjf78Nqpe-jHh4P-ICUM0i2M5eW5KTqaOQw6L4_Fd_TQG5jxzdV-nyRPVfCMb0/exec", {
   method: "POST",
   body: formData
+})
+.then(() => {
+  console.log("TERKIRIM ✅");
+})
+.catch(err => {
+  console.log("ERROR ❌", err);
 });
 
   const pesan =
