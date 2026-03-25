@@ -161,7 +161,6 @@ function sendToWA(){
 // 🔥 KIRIM KE GOOGLE SHEET
   fetch("https://script.google.com/macros/s/AKfycbwvL5m1hFKh8ucmOYydvFyoUZaFqb4LUyzhNDhvA6V9zzcBr_28FmXQHDNsVZL4y9w6/exec", {
     method: "POST",
-	mode: "no-cors",
     body: JSON.stringify({
       nama: nama,
       nomor: nomor,
