@@ -166,10 +166,9 @@ formData.append("tanggal", tgl);
 formData.append("jumlah", jumlah);
 formData.append("catatan", catatan);
 
-fetch("https://script.google.com/macros/s/AKfycbwj_4s3piyim9RtMW9U1DDltgFPucThkS3trnx5U5oZ-NaC5y9_itXiMeoCM29cNRNZ2w/exec", {
+fetch("https://script.google.com/macros/s/AKfycbzhxVEjf78Nqpe-jHh4P-ICUM0i2M5eW5KTqaOQw6L4_Fd_TQG5jxzdV-nyRPVfCMb0/exec", {
   method: "POST",
-  body: formData,
-  mode: "no-cors"
+  body: formData
 });
 
   const pesan =
