@@ -159,7 +159,7 @@ function sendToWA(){
   const tgl = t[2] + "-" + t[1] + "-" + t[0];
 	
 // 🔥 KIRIM KE GOOGLE SHEET
- const formData = new FormData();
+const formData = new FormData();
 formData.append("nama", nama);
 formData.append("nomor", nomor);
 formData.append("tanggal", tgl);
@@ -168,7 +168,8 @@ formData.append("catatan", catatan);
 
 fetch("https://script.google.com/macros/s/AKfycbyiOsrYvPc2vSL6cOHM-J6O9hIJGjuEm5HZmyKOAYiyeDrUQI_RYiNxArbdS7-AdM4V/exec", {
   method: "POST",
-  body: formData
+  body: formData,
+  mode: "no-cors"
 });
 
   const pesan =
