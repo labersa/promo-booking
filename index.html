@@ -1,198 +1,486 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Promo Riau Fantasi Labersa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Promo BORIL - Riau Fantasi Labersa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0062ff;
+            --secondary: #00d2ff;
+            --whatsapp: #25D366;
+            --dark: #0f172a;
+            --light-bg: #f0f4f8;
+            --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-<style>
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background:#f5f7fb;
-}
-.hero{
-  background:linear-gradient(135deg,#00c6ff,#0072ff);
-  color:#fff;
-  padding:40px 20px;
-  text-align:center;
-}
-.hero h1{margin:0;font-size:28px;font-weight:700;}
-.hero p{margin-top:10px;font-size:14px;opacity:.9}
-.badge{
-  display:inline-block;
-  background:#ffeb3b;
-  color:#000;
-  padding:6px 12px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:600;
-  margin-top:10px;
-}
-.container{
-  max-width:520px;
-  margin:-30px auto 30px;
-  background:#fff;
-  border-radius:20px;
-  padding:25px;
-  box-shadow:0 15px 40px rgba(0,0,0,.1);
-}
-.price-box{
-  text-align:center;
-  background:#f1f8ff;
-  padding:20px;
-  border-radius:16px;
-}
-.price-box h2{
-  margin:0;
-  font-size:32px;
-  color:#0072ff;
-}
-.info{
-  margin-top:15px;
-  font-size:14px;
-}
-.list{
-  margin-top:20px;
-  background:#fff8e1;
-  padding:15px;
-  border-radius:12px;
-  font-size:14px;
-}
-label{
-  display:block;
-  margin-top:15px;
-  font-weight:600;
-}
-input,textarea{
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  border-radius:10px;
-  border:1px solid #ddd;
-}
-button{
-  width:100%;
-  margin-top:20px;
-  padding:15px;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  color:#fff;
-  font-size:18px;
-  font-weight:600;
-  cursor:pointer;
-}
-button:hover{opacity:.9}
-.footer{
-  text-align:center;
-  font-size:13px;
-  color:#777;
-  margin-top:15px;
-}
-</style>
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 114, 255, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 210, 255, 0.05) 0px, transparent 50%);
+            color: var(--dark);
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .blob {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            filter: blur(80px);
+            opacity: 0.1;
+            z-index: -1;
+            border-radius: 50%;
+        }
+        .blob-1 { top: -100px; right: -100px; }
+        .blob-2 { bottom: -100px; left: -100px; width: 300px; height: 300px; }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), #004dc7);
+            color: #fff;
+            padding: 60px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .hero p {
+            margin-top: 10px;
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #facc15;
+            border: 1px solid #eab308;
+            color: #854d0e;
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-top: 15px;
+            text-transform: uppercase;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.3);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: -60px auto 40px;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 32px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .price-card {
+            text-align: center;
+            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .price-card .price-row {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .price-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .price-item .day-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-item .amount {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .rules-box {
+            background: #fffbeb;
+            border-left: 4px solid #facc15;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .rules-box div {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+            color: #78350f;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+            padding-left: 4px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            font-family: inherit;
+            font-size: 15px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            background: #fff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            color: var(--dark);
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 98, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .total-summary {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 25px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .summary-total b {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .cash-only-note {
+            text-align: center;
+            font-size: 11px;
+            color: #ef4444;
+            font-weight: 700;
+            margin-top: 8px;
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 20px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #22c55e, #15803d);
+            color: #fff;
+            font-size: 17px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 20px -5px rgba(34, 197, 94, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(34, 197, 94, 0.5);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 30px;
+        }
+
+        #msg-box {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 99px;
+            font-size: 14px;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+        }
+    </style>
 </head>
-
 <body>
 
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
 <div class="hero">
-  <h1>🎟️ PROMO GOBER</h1>
-  <p>Go Booking Online Lebaran Riau Fantasi</p>
-  <div class="badge">WAJIB BOOKING</div>
+    <h1>🎟️ PROMO BORIL</h1>
+    <p>Booking Online April Riau Fantasi Labersa</p>
+    <div class="badge">Wajib booking H-1</div>
 </div>
 
 <div class="container">
+    <div class="card">
+        <div class="price-card">
+            <span style="font-size: 12px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Harga Promo</span>
+            <div class="price-row">
+                <div class="price-item">
+                    <span class="day-label">Senin - Jumat</span>
+                    <span class="amount">30k</span>
+                </div>
+                <div style="width: 1px; background: #e2e8f0; margin: 8px 0;"></div>
+                <div class="price-item">
+                    <span class="day-label">Sabtu - Minggu</span>
+                    <span class="amount">35k</span>
+                </div>
+            </div>
+            <div style="margin-top: 15px; font-size: 11px; color: #64748b; font-weight: 600;">
+                💳 Jaminan Smart Tag: Rp25.000/Booking
+            </div>
+        </div>
 
-  <div class="price-box">
-    <h2>Rp40.000</h2>
-    <div class="info">
-      Senin - Minggu<br>
-      ⏰ 09.00 - 18.00<br>
-      📅 21 - 29 Maret 2026
+        <div class="rules-box">
+            <div><span>💵</span> <span><b>Hanya menerima PEMBAYARAN TUNAI saat kunjungan</b></span></div>
+            <div><span>✅</span> <span>Anak di bawah 80 cm <b>GRATIS</b></span></div>
+            <div><span>🆕</span> <span>Termasuk wahana Baru</span></div>
+            <div><span>💳</span> <span><b>Jaminan Smart Tag Rp25.000</b> (Wajib per booking & dikembalikan saat pulang)</span></div>
+            <div><span>🕒</span> <span>Jam Operasional: 09:00 - 17:00</span></div>
+            <div><span>📅</span> <span>Masa Promo: 30 Mar - 30 Apr 2026</span></div>
+        </div>
+
+        <form id="bookingForm" onsubmit="handleBooking(event)">
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input type="text" id="nama" placeholder="Tulis nama sesuai KTP" required>
+            </div>
+
+            <div class="form-group">
+                <label>Nomor WhatsApp</label>
+                <input type="tel" id="nomor" placeholder="Contoh: 08123456789" required>
+            </div>
+
+            <div class="form-group">
+                <label>Tanggal Kunjungan</label>
+                <input type="date" id="tanggal" min="2026-03-30" max="2026-04-30" onchange="updateTotal()" required>
+            </div>
+
+            <div class="form-group">
+                <label>Jumlah Tiket</label>
+                <input type="number" id="jumlah" value="1" min="1" oninput="updateTotal()" required>
+            </div>
+
+            <div class="form-group">
+                <label>Catatan Tambahan</label>
+                <textarea id="catatan" rows="2" placeholder="Contoh: Rombongan sekolah atau keluarga"></textarea>
+            </div>
+
+            <div class="total-summary">
+                <div class="summary-line">
+                    <span>Harga Tiket:</span>
+                    <span id="priceUnitDisplay" style="font-weight: 700;">-</span>
+                </div>
+                <div class="summary-line">
+                    <span>Jaminan Smart Tag:</span>
+                    <span id="depositDisplay" style="font-weight: 700;">Rp25.000</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total Pembayaran:</span>
+                    <b id="totalDisplay">Rp0</b>
+                </div>
+                <span class="cash-only-note">⚠️ Pembayaran Hanya Tunai (Cash)</span>
+            </div>
+
+            <button type="submit" id="submitBtn">
+                <span>📲 Konfirmasi Via WhatsApp</span>
+            </button>
+        </form>
+
+        <div class="footer">
+            &copy; 2026 Riau Fantasi Labersa Waterpark.
+        </div>
     </div>
-  </div>
-
-  <div class="list">
-    ✅ Pembayaran tunai saat kunjungan<br>
-	✅ Anak dibawah 80 cm GRATIS<br>
-    ✅ Termasuk wahana baru<br>
-    ✅ Wajib booking H-1<br>
-    ⚠️ Menunjukkan bukti booking
-  </div>
-
-  <form onsubmit="sendToWA(); return false;">
-    <label>Nama</label>
-    <input type="text" id="nama" required>
-
-    <label>No WhatsApp</label>
-    <input type="tel" id="nomor" required>
-
-    <label>Tanggal</label>
-    <input type="date" id="tanggal" required>
-
-    <label>Jumlah Tiket</label>
-    <input type="number" id="jumlah" value="1" min="1" required>
-
-    <label>Catatan</label>
-    <textarea id="catatan"></textarea>
-
-    <button type="submit">📲 Booking Sekarang</button>
-  </form>
-
-  <div class="footer">
-    © 2026 Riau Fantasi Labersa
-  </div>
-
 </div>
 
+<div id="msg-box">Memproses...</div>
+
 <script>
-function sendToWA(){
-  const nama = document.getElementById("nama").value;
-  const nomor = document.getElementById("nomor").value;
-  const tanggal = document.getElementById("tanggal").value;
-  const jumlah = document.getElementById("jumlah").value;
-  const catatan = document.getElementById("catatan").value || "-";
+    const PRICE_WEEKDAY = 30000;
+    const PRICE_WEEKEND = 35000;
+    const DEPOSIT_SMART_TAG = 25000; // Flat per booking
 
-  const t = tanggal.split("-");
-  const tgl = t[2] + "-" + t[1] + "-" + t[0];
-	
-// 🔥 KIRIM KE GOOGLE SHEET
-const formData = new FormData();
-formData.append("nama", nama);
-formData.append("nomor", nomor);
-formData.append("tanggal", tgl);
-formData.append("jumlah", jumlah);
-formData.append("catatan", catatan);
+    function getPriceByDate(dateString) {
+        if (!dateString) return 0;
+        const date = new Date(dateString);
+        const day = date.getDay(); 
+        return (day === 0 || day === 6) ? PRICE_WEEKEND : PRICE_WEEKDAY;
+    }
 
-fetch("https://script.google.com/macros/s/AKfycbzhxVEjf78Nqpe-jHh4P-ICUM0i2M5eW5KTqaOQw6L4_Fd_TQG5jxzdV-nyRPVfCMb0/exec", {
-  method: "POST",
-  body: formData
-})
-.then(() => {
-  console.log("TERKIRIM ✅");
-})
-.catch(err => {
-  console.log("ERROR ❌", err);
-});
+    function updateTotal() {
+        const tanggalValue = document.getElementById('tanggal').value;
+        const jumlah = parseInt(document.getElementById('jumlah').value) || 0;
+        
+        if (!tanggalValue) {
+            document.getElementById('priceUnitDisplay').innerText = "-";
+            document.getElementById('depositDisplay').innerText = "Rp25.000";
+            document.getElementById('totalDisplay').innerText = "Rp0";
+            return;
+        }
 
-  const pesan =
-    "Halo Riau Fantasi Labersa!%0A%0A" +
-    "Booking PROMO GOBER Rp40.000%0A%0A" +
-    "Nama: " + nama + "%0A" +
-    "No HP: " + nomor + "%0A" +
-    "Tanggal: " + tgl + "%0A" +
-    "Jumlah: " + jumlah + "%0A" +
-    "Catatan: " + catatan + "%0A%0A" +
-    "Info Penting:%0A" +
-    "- Berlaku 21-29 Maret 2026%0A" +
-    "- Anak dibawah 80cm Gratis%0A" +
-	"- Pembayaran tunai saat kunjungan%0A" +
-    "- Wajib menunjukkan bukti booking";
+        const pricePerTicket = getPriceByDate(tanggalValue);
+        const totalTicket = jumlah * pricePerTicket;
+        const grandTotal = totalTicket + DEPOSIT_SMART_TAG;
 
-  window.open("https://wa.me/628117696599?text=" + pesan);
-}
+        document.getElementById('priceUnitDisplay').innerText = "Rp" + totalTicket.toLocaleString('id-ID');
+        document.getElementById('depositDisplay').innerText = "Rp" + DEPOSIT_SMART_TAG.toLocaleString('id-ID');
+        document.getElementById('totalDisplay').innerText = "Rp" + grandTotal.toLocaleString('id-ID');
+    }
+
+    async function handleBooking(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const msgBox = document.getElementById('msg-box');
+        
+        const nama = document.getElementById("nama").value;
+        const nomor = document.getElementById("nomor").value;
+        const tanggal = document.getElementById("tanggal").value;
+        const jumlah = document.getElementById("jumlah").value;
+        const catatan = document.getElementById("catatan").value || "-";
+
+        const pricePerTicket = getPriceByDate(tanggal);
+        const totalTicket = jumlah * pricePerTicket;
+        const grandTotal = (totalTicket + DEPOSIT_SMART_TAG).toLocaleString('id-ID');
+        
+        const dateParts = tanggal.split("-");
+        const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+        const tipeHari = (pricePerTicket === PRICE_WEEKEND) ? "Weekend" : "Weekday";
+
+        btn.disabled = true;
+        btn.innerHTML = "<span>⏳ Memproses...</span>";
+        msgBox.style.display = "block";
+
+        try {
+            const formData = new FormData();
+            formData.append("nama", nama);
+            formData.append("nomor", nomor);
+            formData.append("tanggal", formattedDate);
+            formData.append("jumlah", jumlah);
+            formData.append("catatan", catatan + " | Jaminan Tag (Flat): Rp25.000");
+
+            await fetch("https://script.google.com/macros/s/AKfycbzhxVEjf78Nqpe-jHh4P-ICUM0i2M5eW5KTqaOQw6L4_Fd_TQG5jxzdV-nyRPVfCMb0/exec", {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            });
+
+            setTimeout(() => {
+                const pesan = 
+                    "Halo Riau Fantasi Labersa!%0A%0A" +
+                    "*BOOKING PROMO BORIL (APRIL)*%0A" +
+                    "━━━━━━━━━━━━━━━━━━%0A" +
+                    "👤 Nama: *" + nama.toUpperCase() + "*%0A" +
+                    "📱 No HP: " + nomor + "%0A" +
+                    "📅 Tanggal: *" + formattedDate + "* (" + tipeHari + ")%0A" +
+                    "🎟️ Jumlah: " + jumlah + " Tiket%0A" +
+                    "💵 Tiket: Rp" + totalTicket.toLocaleString('id-ID') + "%0A" +
+                    "💳 Jaminan Tag: Rp25.000 (Flat)%0A" +
+                    "💰 *TOTAL BAYAR: Rp" + grandTotal + "*%0A" +
+                    "━━━━━━━━━━━━━━━━━━%0A%0A" +
+                    "Info Penting:%0A" +
+                    "- Berlaku 30 maret - 30 April 2026%0A" +
+                    "- Anak dibawah 80cm Gratis%0A" +
+                    "- Pembayaran tunai saat kunjungan%0A" +
+                    "- Wajib menunjukkan bukti booking%0A%0A" +
+                    "Saya setuju untuk melakukan *PEMBAYARAN TUNAI (CASH)* saat kunjungan. Jaminan tag akan dikembalikan saat saya pulang. Terima kasih!";
+
+                window.open("https://wa.me/628117696599?text=" + pesan, "_blank");
+
+                btn.disabled = false;
+                btn.innerHTML = "<span>📲 Konfirmasi Via WhatsApp</span>";
+                msgBox.style.display = "none";
+            }, 800);
+
+        } catch (error) {
+            window.open("https://wa.me/628117696599?text=Halo Riau Fantasi, saya ingin booking tiket BORIL atas nama " + nama, "_blank");
+            btn.disabled = false;
+            btn.innerHTML = "<span>📲 Konfirmasi Via WhatsApp</span>";
+            msgBox.style.display = "none";
+        }
+    }
 </script>
 
 </body>
