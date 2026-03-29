@@ -381,13 +381,28 @@
 <script>
     const PRICE_WEEKDAY = 30000;
     const PRICE_WEEKEND = 35000;
-    const DEPOSIT_SMART_TAG = 25000; // Flat per booking
+    const DEPOSIT_SMART_TAG = 25000;
 
     function getPriceByDate(dateString) {
         if (!dateString) return 0;
         const date = new Date(dateString);
         const day = date.getDay(); 
         return (day === 0 || day === 6) ? PRICE_WEEKEND : PRICE_WEEKDAY;
+    }
+
+    function formatNomor(nomor) {
+        nomor = nomor.replace(/\D/g, '');
+        if (nomor.startsWith('0')) {
+            return '62' + nomor.substring(1);
+        }
+        if (nomor.startsWith('62')) {
+            return nomor;
+        }
+        return nomor;
+    }
+
+    function validateNomor(nomor) {
+        return /^62[0-9]{8,13}$/.test(nomor);
     }
 
     function updateTotal() {
@@ -415,11 +430,18 @@
         const btn = document.getElementById('submitBtn');
         const msgBox = document.getElementById('msg-box');
         
-        const nama = document.getElementById("nama").value;
-        const nomor = document.getElementById("nomor").value;
+        let nama = document.getElementById("nama").value;
+        let nomor = document.getElementById("nomor").value;
         const tanggal = document.getElementById("tanggal").value;
         const jumlah = document.getElementById("jumlah").value;
         const catatan = document.getElementById("catatan").value || "-";
+
+        nomor = formatNomor(nomor);
+
+        if (!validateNomor(nomor)) {
+            alert("Nomor WhatsApp tidak valid! Gunakan format: 08xxxx atau 62xxxx");
+            return;
+        }
 
         const pricePerTicket = getPriceByDate(tanggal);
         const totalTicket = jumlah * pricePerTicket;
@@ -441,46 +463,50 @@
             formData.append("jumlah", jumlah);
             formData.append("catatan", catatan + " | Jaminan Tag (Flat): Rp25.000");
 
-            await fetch("https://script.google.com/macros/s/AKfycbzhxVEjf78Nqpe-jHh4P-ICUM0i2M5eW5KTqaOQw6L4_Fd_TQG5jxzdV-nyRPVfCMb0/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbzhxVEjf78Nqpe-jHh4P-ICUM0i2M5eW5KTqaOQw6L4_Fd_TQG5jxzdV-nyRPVfCMb0/exec", {
                 method: "POST",
                 body: formData,
                 mode: "no-cors"
             });
 
+            const pesan = 
+                `Halo Riau Fantasi Labersa!
+
+*BOOKING PROMO BORIL (APRIL)*
+━━━━━━━━━━━━━━━━━━
+👤 Nama: *${nama.toUpperCase()}*
+📱 No HP: ${nomor}
+📅 Tanggal: *${formattedDate}* (${tipeHari})
+🎟️ Jumlah: ${jumlah} Tiket
+💵 Tiket: Rp${totalTicket.toLocaleString('id-ID')}
+💳 Jaminan Tag: Rp25.000 (Flat)
+💰 *TOTAL BAYAR: Rp${grandTotal}*
+━━━━━━━━━━━━━━━━━━
+
+Info Penting:
+- Berlaku 30 maret - 30 April 2026
+- Anak dibawah 80cm Gratis
+- Pembayaran tunai saat kunjungan
+- Wajib menunjukkan bukti booking`;
+
+            const encodedPesan = encodeURIComponent(pesan);
+
+            // 🔥 WA pasti kebuka (anti blok)
+            window.location.href = `https://wa.me/628117696599?text=${encodedPesan}`;
+
             setTimeout(() => {
-                const pesan = 
-                    "Halo Riau Fantasi Labersa!%0A%0A" +
-                    "*BOOKING PROMO BORIL (APRIL)*%0A" +
-                    "━━━━━━━━━━━━━━━━━━%0A" +
-                    "👤 Nama: *" + nama.toUpperCase() + "*%0A" +
-                    "📱 No HP: " + nomor + "%0A" +
-                    "📅 Tanggal: *" + formattedDate + "* (" + tipeHari + ")%0A" +
-                    "🎟️ Jumlah: " + jumlah + " Tiket%0A" +
-                    "💵 Tiket: Rp" + totalTicket.toLocaleString('id-ID') + "%0A" +
-                    "💳 Jaminan Tag: Rp25.000 (Flat)%0A" +
-                    "💰 *TOTAL BAYAR: Rp" + grandTotal + "*%0A" +
-                    "━━━━━━━━━━━━━━━━━━%0A%0A" +
-                    "Info Penting:%0A" +
-                    "- Berlaku 30 maret - 30 April 2026%0A" +
-                    "- Anak dibawah 80cm Gratis%0A" +
-                    "- Pembayaran tunai saat kunjungan%0A" +
-                    "- Wajib menunjukkan bukti booking%0A%0A" +
-
-                window.open("https://wa.me/628117696599?text=" + pesan, "_blank");
-
                 btn.disabled = false;
                 btn.innerHTML = "<span>📲 Konfirmasi Via WhatsApp</span>";
                 msgBox.style.display = "none";
-            }, 800);
+            }, 1500);
 
         } catch (error) {
-            window.open("https://wa.me/628117696599?text=Halo Riau Fantasi, saya ingin booking tiket BORIL atas nama " + nama, "_blank");
+            window.location.href = `https://wa.me/628117696599?text=Halo Riau Fantasi, saya ingin booking tiket BORIL atas nama ${nama}`;
             btn.disabled = false;
             btn.innerHTML = "<span>📲 Konfirmasi Via WhatsApp</span>";
             msgBox.style.display = "none";
         }
     }
 </script>
-
 </body>
 </html>
