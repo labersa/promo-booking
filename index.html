@@ -382,12 +382,17 @@
     const PRICE_WEEKDAY = 30000;
     const PRICE_WEEKEND = 35000;
     const DEPOSIT_SMART_TAG = 25000;
-
+const LIBUR_NASIONAL = [
+  "2026-04-03"
+];
     function getPriceByDate(dateString) {
         if (!dateString) return 0;
         const date = new Date(dateString);
         const day = date.getDay(); 
-        return (day === 0 || day === 6) ? PRICE_WEEKEND : PRICE_WEEKDAY;
+        const isWeekend = (day === 0 || day === 6);
+const isHoliday = LIBUR_NASIONAL.includes(dateString);
+
+return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
     }
 
     function formatNomor(nomor) {
