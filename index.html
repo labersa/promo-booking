@@ -307,9 +307,7 @@
                 <div class="price-item">
                     <span class="day-label">Sabtu - Minggu</span>
                     <span class="amount">35k</span>
-                    <div style="font-size:10px; color:#64748b;">
-    Libur Nasional
-</div>
+                    <div style="font-size:10px; color:#64748b;">Libur Nasional</div>
                 </div>
             </div>
             <div style="margin-top: 15px; font-size: 11px; color: #64748b; font-weight: 600;">
@@ -382,39 +380,30 @@
 <div id="msg-box">Memproses...</div>
 
 <script>
-     // --- KONFIGURASI ---
-    // GANTI URL DI BAWAH INI DENGAN URL GOOGLE SCRIPT ANDA
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw1pfdhYdgyBNg33TqyOxJ-lTunfpqG3rYoxJUKCgECGNsMePyTako3Y5N5ZAtBPBXpIg/exec";
     
     const PRICE_WEEKDAY = 30000;
     const PRICE_WEEKEND = 35000;
     const DEPOSIT_SMART_TAG = 25000;
-const LIBUR_NASIONAL = [
-  "2026-04-03"
-];
+    const LIBUR_NASIONAL = ["2026-04-03"];
+
     function getPriceByDate(dateString) {
         if (!dateString) return 0;
         const date = new Date(dateString);
         const day = date.getDay(); 
         const isWeekend = (day === 0 || day === 6);
-const isHoliday = LIBUR_NASIONAL.includes(dateString);
-
-return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
+        const isHoliday = LIBUR_NASIONAL.includes(dateString);
+        return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
     }
 
     function formatNomor(nomor) {
         nomor = nomor.replace(/\D/g, '');
-        if (nomor.startsWith('0')) {
-            return '62' + nomor.substring(1);
-        }
-        if (nomor.startsWith('62')) {
-            return nomor;
-        }
-        return nomor;
+        if (nomor.startsWith('0')) return '62' + nomor.substring(1);
+        return nomor.startsWith('62') ? nomor : '62' + nomor;
     }
 
     function validateNomor(nomor) {
-        return /^62[0-9]{8,13}$/.test(nomor);
+        return /^62[0-9]{8,14}$/.test(nomor);
     }
 
     function updateTotal() {
@@ -423,7 +412,6 @@ return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
         
         if (!tanggalValue) {
             document.getElementById('priceUnitDisplay').innerText = "-";
-            document.getElementById('depositDisplay').innerText = "Rp25.000";
             document.getElementById('totalDisplay').innerText = "Rp0";
             return;
         }
@@ -433,7 +421,6 @@ return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
         const grandTotal = totalTicket + DEPOSIT_SMART_TAG;
 
         document.getElementById('priceUnitDisplay').innerText = "Rp" + totalTicket.toLocaleString('id-ID');
-        document.getElementById('depositDisplay').innerText = "Rp" + DEPOSIT_SMART_TAG.toLocaleString('id-ID');
         document.getElementById('totalDisplay').innerText = "Rp" + grandTotal.toLocaleString('id-ID');
     }
 
@@ -442,13 +429,13 @@ return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
         const btn = document.getElementById('submitBtn');
         const msgBox = document.getElementById('msg-box');
         
-        let nama = document.getElementById("nama").value;
-        let nomor = document.getElementById("nomor").value;
+        let nama = document.getElementById("nama").value.trim();
+        let nomorInput = document.getElementById("nomor").value.trim();
         const tanggal = document.getElementById("tanggal").value;
-        const jumlah = document.getElementById("jumlah").value;
+        const jumlah = parseInt(document.getElementById("jumlah").value);
         const catatan = document.getElementById("catatan").value || "-";
 
-        nomor = formatNomor(nomor);
+        const nomor = formatNomor(nomorInput);
 
         if (!validateNomor(nomor)) {
             alert("Nomor WhatsApp tidak valid! Gunakan format: 08xxxx atau 62xxxx");
@@ -457,7 +444,8 @@ return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
 
         const pricePerTicket = getPriceByDate(tanggal);
         const totalTicket = jumlah * pricePerTicket;
-        const grandTotal = (totalTicket + DEPOSIT_SMART_TAG).toLocaleString('id-ID');
+        const grandTotalNum = totalTicket + DEPOSIT_SMART_TAG;
+        const grandTotalFormatted = grandTotalNum.toLocaleString('id-ID');
         
         const dateParts = tanggal.split("-");
         const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
@@ -472,19 +460,18 @@ return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
             const formData = new FormData();
             formData.append("nama", nama);
             formData.append("nomor", nomor);
-            formData.append("tanggal", tanggal);
+            formData.append("tanggal", formattedDate);
             formData.append("jumlah", jumlah);
             formData.append("catatan", catatan);
-            formData.append("total", "Rp" + data.total.toLocaleString('id-ID'));
+            formData.append("total", "Rp" + grandTotalFormatted);
 
-            // Menggunakan mode 'no-cors' agar tidak terhalang kebijakan browser
-            // Kekurangannya kita tidak bisa membaca response sukses/gagal dari script
-            await fetch(SCRIPT_URL, {
+            fetch(SCRIPT_URL, {
                 method: "POST",
                 body: formData,
                 mode: "no-cors"
             });
 
+            // 2. FORMAT PESAN WHATSAPP SESUAI PERMINTAAN
             const pesan = 
 `Halo Riau Fantasi Labersa!
 
@@ -496,7 +483,7 @@ return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
 🎟️ Jumlah: ${jumlah} Tiket
 💵 Tiket: Rp${totalTicket.toLocaleString('id-ID')}
 💳 Jaminan Tag: Rp25.000 (Flat)
-💰 *TOTAL BAYAR: Rp${grandTotal}*
+💰 *TOTAL BAYAR: Rp${grandTotalFormatted}*
 ━━━━━━━━━━━━━━━━━━
 📝 Catatan: ${catatan}
 
@@ -508,39 +495,36 @@ Info Penting:
 - Wajib menunjukkan bukti booking`;
 
             const encodedPesan = encodeURIComponent(pesan);
-
-            // 🔥 WA pasti kebuka (anti blok)
+            
+            // Redirect ke WhatsApp
             window.location.href = `https://wa.me/628117696599?text=${encodedPesan}`;
 
             setTimeout(() => {
                 btn.disabled = false;
                 btn.innerHTML = "<span>📲 Konfirmasi Via WhatsApp</span>";
                 msgBox.style.display = "none";
-            }, 1500);
+            }, 2000);
 
         } catch (error) {
-            window.location.href = `https://wa.me/628117696599?text=Halo Riau Fantasi, saya ingin booking tiket BORIL atas nama ${nama}`;
+            console.error(error);
+            window.location.href = `https://wa.me/628117696599?text=Halo Riau Fantasi Labersa, saya ingin booking tiket BORIL atas nama ${nama}`;
             btn.disabled = false;
             btn.innerHTML = "<span>📲 Konfirmasi Via WhatsApp</span>";
             msgBox.style.display = "none";
         }
     }
- window.onload = function () {
-    const input = document.getElementById("tanggal");
 
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
+    window.onload = function () {
+        const input = document.getElementById("tanggal");
+        const today = new Date();
+        const todayStr = today.toISOString().split('T')[0];
 
-    const todayStr = `${yyyy}-${mm}-${dd}`;
+        input.min = todayStr;
+        input.max = "2026-04-30";
+        input.value = todayStr;
 
-    input.min = todayStr;          // bisa booking hari ini
-    input.max = "2026-04-30";      // batas promo
-    input.value = todayStr;        // otomatis isi hari ini
-
-    updateTotal(); // langsung hitung harga
-};   
+        updateTotal();
+    };   
 </script>
 </body>
 </html>
