@@ -479,7 +479,7 @@ return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
 
             // Menggunakan mode 'no-cors' agar tidak terhalang kebijakan browser
             // Kekurangannya kita tidak bisa membaca response sukses/gagal dari script
-            await fetch("https://script.google.com/macros/s/AKfycbw1pfdhYdgyBNg33TqyOxJ-lTunfpqG3rYoxJUKCgECGNsMePyTako3Y5N5ZAtBPBXpIg/exec" {
+            await fetch(SCRIPT_URL, {
                 method: "POST",
                 body: formData,
                 mode: "no-cors"
