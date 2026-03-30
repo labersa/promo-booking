@@ -468,14 +468,18 @@ return (isWeekend || isHoliday) ? PRICE_WEEKEND : PRICE_WEEKDAY;
         msgBox.style.display = "block";
 
         try {
+            // 1. KIRIM KE GOOGLE SHEETS
             const formData = new FormData();
             formData.append("nama", nama);
             formData.append("nomor", nomor);
-            formData.append("tanggal", formattedDate);
+            formData.append("tanggal", tanggal);
             formData.append("jumlah", jumlah);
-            formData.append("catatan", catatan + " | Jaminan Tag (Flat): Rp25.000");
+            formData.append("catatan", catatan);
+            formData.append("total", "Rp" + data.total.toLocaleString('id-ID'));
 
-            fetch("https://script.google.com/macros/s/AKfycbzhxVEjf78Nqpe-jHh4P-ICUM0i2M5eW5KTqaOQw6L4_Fd_TQG5jxzdV-nyRPVfCMb0/exec", {
+            // Menggunakan mode 'no-cors' agar tidak terhalang kebijakan browser
+            // Kekurangannya kita tidak bisa membaca response sukses/gagal dari script
+            await fetch("https://script.google.com/macros/s/AKfycbw1pfdhYdgyBNg33TqyOxJ-lTunfpqG3rYoxJUKCgECGNsMePyTako3Y5N5ZAtBPBXpIg/exec" {
                 method: "POST",
                 body: formData,
                 mode: "no-cors"
